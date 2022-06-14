@@ -1,18 +1,17 @@
-const mongoose = require("mongoose");
+require("dotenv").config({ path: "../.env" });
 
-exports.dbConnection = () => {
-  try {
-    mongoose
-      .connect(process.env.DB_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      })
-      .then(() => {
-        console.log(`DB is connected!`);
-      })
-      .catch((error) => {
-        console.log(`DB failed to connect due to ${error.message}!`);
-        process.exit(1);
-      });
-  } catch (error) {}
-};
+const { Sequelize } = require("sequelize");
+
+const sequelize = new Sequelize(
+  process.env.POSTGRES_DB,
+  process.env.POSTGRES_USER,
+  process.env.POSTGRES_PASSWORD,
+  {
+    host: process.env.POSTGRES_HOST,
+    dialect: "postgres",
+    dialectOptions: { connectTimeout: 60000 },
+    logging: false,
+  }
+);
+
+module.exports = sequelize;
