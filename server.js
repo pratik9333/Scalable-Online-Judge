@@ -3,6 +3,7 @@ require("dotenv").config();
 const cors = require("cors");
 const express = require("express");
 const sequelize = require("./config/dbConnection");
+
 const app = express();
 
 // regular middleware
@@ -15,6 +16,9 @@ app.use(cors);
 // import all routes here
 
 // router middleware
+
+// relations
+require("./utils/relations").Relations();
 
 // connection with db
 sequelize
