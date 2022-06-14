@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/dbConnection");
 
-const Class = sequelize.define("problems", {
+const Problem = sequelize.define("problems", {
   statement: {
     type: DataTypes.CHAR,
     allowNull: false,
@@ -20,4 +20,4 @@ const Class = sequelize.define("problems", {
   },
 });
 
-module.exports = Class;
+module.exports = Problem;
