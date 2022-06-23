@@ -4,11 +4,11 @@ const { DataTypes } = require("sequelize");
 
 const TestCase = sequelize.define("testcase", {
   input: {
-    type: DataTypes.CHAR,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   output: {
-    type: DataTypes.CHAR,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
 });

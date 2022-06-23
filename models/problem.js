@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/dbConnection");
+const crypto = require("crypto");
 
 const Problem = sequelize.define("problems", {
   statement: {
@@ -18,6 +19,10 @@ const Problem = sequelize.define("problems", {
     type: DataTypes.CHAR,
     allowNull: false,
   },
+});
+
+Problem.beforeCreate((problem, option) => {
+  problem.code = crypto.randomBytes(6).toString("hex");
 });
 
 module.exports = Problem;
